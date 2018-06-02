@@ -2,20 +2,22 @@ package com.patryk1007.bluetoothtestapp.bluetooth;
 
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothServerSocket;
+import android.bluetooth.BluetoothSocket;
 
-import com.patryk1007.bluetoothtestapp.DataHelper;
+import com.patryk1007.bluetoothtestapp.data.DataHelper;
 
 import java.io.IOException;
 
 public class ServerConnectionManager extends Thread {
 
-    private final BluetoothServerSocket socket;
+    private final BluetoothServerSocket serverSocket;
+    private BluetoothSocket socket;
     private final BluetoothAdapter bluetoothAdapter;
     private final ConnectionCallback callback;
 
     public ServerConnectionManager(BluetoothAdapter bluetoothAdapter, ConnectionCallback callback) {
         this.bluetoothAdapter = bluetoothAdapter;
-        this.socket = prepareSocket();
+        this.serverSocket = prepareSocket();
         this.callback = callback;
     }
 
@@ -31,17 +33,17 @@ public class ServerConnectionManager extends Thread {
     public void run() {
         try {
             callback.onConnecting();
-            socket.accept();
+            socket = serverSocket.accept();
         } catch (IOException connectException) {
             closeConnection();
             return;
         }
-        callback.onConnected(null);
+        callback.onConnected(socket, null);
     }
 
     public void closeConnection() {
         try {
-            socket.close();
+            serverSocket.close();
             callback.onDisconnected();
         } catch (IOException e) {
             callback.onError("Could not close the client socket");

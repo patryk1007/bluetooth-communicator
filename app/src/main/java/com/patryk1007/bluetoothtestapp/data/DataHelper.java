@@ -1,4 +1,4 @@
-package com.patryk1007.bluetoothtestapp;
+package com.patryk1007.bluetoothtestapp.data;
 
 import java.util.UUID;
 

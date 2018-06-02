@@ -3,7 +3,7 @@ package com.patryk1007.bluetoothtestapp.bluetooth;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 
-import com.patryk1007.bluetoothtestapp.DataHelper;
+import com.patryk1007.bluetoothtestapp.data.DataHelper;
 
 import java.io.IOException;
 
@@ -36,7 +36,7 @@ public class ClientConnectionManager extends Thread {
             closeConnection();
             return;
         }
-        callback.onConnected(device);
+        callback.onConnected(socket, device);
     }
 
     public void closeConnection() {
