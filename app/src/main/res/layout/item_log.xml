@@ -5,10 +5,10 @@
     android:layout_height="wrap_content">
 
     <TextView
-        android:id="@+id/device_name"
+        android:id="@+id/log_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
+        android:padding="10dp"
         android:textColor="@android:color/black" />
 
     <View

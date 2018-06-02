@@ -3,7 +3,22 @@
 
     <!--SCAN VIEW-->
     <string name="scan_view_start_scan">Start Scan</string>
+    <string name="scan_view_scanning">Scanning</string>
     <string name="scan_view_paired_devices">Show Paired devices</string>
+    <string name="scan_view_location_disabled_error_message">Please enable location and try again</string>
 
+    <!--CHOOSE VIEW-->
+    <string name="choose_view_start_server">Start new server</string>
+    <string name="choose_view_start_client">Join existing server</string>
+
+    <!--COMMUNICATION VIEW-->
+    <string name="communication_view_message_hint">Write message here</string>
+    <string name="communication_view_send_message">Send message</string>
+    <string name="communication_view_send_logs">Logs</string>
+    <string name="communication_view_connecting">Connecting</string>
+    <string name="communication_view_waiting_for_devices">Waiting for devices</string>
+    <string name="communication_view_connected">Connected</string>
+    <string name="communication_view_disconnected">Disconnected</string>
+    <string name="communication_view_error">Error %s</string>
 
 </resources>

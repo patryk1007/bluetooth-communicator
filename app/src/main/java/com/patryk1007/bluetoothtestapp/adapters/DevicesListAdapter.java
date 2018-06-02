@@ -1,4 +1,4 @@
-package com.patryk1007.bluetoothtestapp;
+package com.patryk1007.bluetoothtestapp.adapters;
 
 import android.bluetooth.BluetoothDevice;
 import android.support.annotation.NonNull;
@@ -8,14 +8,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.patryk1007.bluetoothtestapp.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class DevicesListAdapter extends RecyclerView.Adapter<DevicesListAdapter.ViewHolder> {
 
     private List<BluetoothDevice> devices = new ArrayList<>();
+    private ItemClickCallback itemClickCallback;
 
-    public DevicesListAdapter() {
+    public DevicesListAdapter(ItemClickCallback itemClickCallback) {
+        this.itemClickCallback = itemClickCallback;
+    }
+
+    public void setDevices(List<BluetoothDevice> devices) {
+        if (devices != null) {
+            this.devices = devices;
+            notifyDataSetChanged();
+        }
     }
 
     public void addDevice(BluetoothDevice device) {
@@ -34,9 +45,17 @@ public class DevicesListAdapter extends RecyclerView.Adapter<DevicesListAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        BluetoothDevice device = devices.get(position);
+        final BluetoothDevice device = devices.get(position);
         String getDeviceName = device.getName() != null ? device.getName() : device.getAddress();
         holder.deviceName.setText(getDeviceName);
+        holder.deviceName.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (itemClickCallback != null) {
+                    itemClickCallback.onItemLick(device);
+                }
+            }
+        });
     }
 
     @Override
