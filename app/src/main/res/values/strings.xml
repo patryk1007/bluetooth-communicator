@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BluetoothTestApp</string>
+
+    <!--SCAN VIEW-->
+    <string name="scan_view_start_scan">Start Scan</string>
+    <string name="scan_view_paired_devices">Show Paired devices</string>
+
+
+</resources>
